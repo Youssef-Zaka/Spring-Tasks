@@ -1,4 +1,5 @@
-package com.sumerge.task1.Spring.Task1.Impl;
+package com.sumerge.task2.Spring.Task2.Impl;
+
 
 
 import com.sumerge.common.Interface.CourseRecommender;
@@ -12,8 +13,8 @@ public class CheapestCourseRecommender implements CourseRecommender {
     public List<Course> recommendCourses() {
         // Logic to recommend cheapest courses
         return List.of(
-                new Course("Cheapest Course 1", "Description 1", "Instructor 1"),
-                new Course("Cheapest Course 2", "Description 2", "Instructor 2")
+                new Course("External Cheapest Course 1", "Description 1", "Instructor 1"),
+                new Course("External Cheapest Course 2", "Description 2", "Instructor 2")
         );
     }
 }

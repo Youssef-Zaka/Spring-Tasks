@@ -1,9 +1,9 @@
 package com.sumerge.task1.Spring.Task1.Impl;
 
-import com.sumerge.task1.Spring.Task1.Interface.CourseRecommender;
-import com.sumerge.task1.Spring.Task1.Model.Course;
-import org.springframework.context.annotation.Primary;
-import org.springframework.stereotype.Component;
+
+
+import com.sumerge.common.Interface.CourseRecommender;
+import com.sumerge.common.Model.Course;
 
 import java.util.List;
 

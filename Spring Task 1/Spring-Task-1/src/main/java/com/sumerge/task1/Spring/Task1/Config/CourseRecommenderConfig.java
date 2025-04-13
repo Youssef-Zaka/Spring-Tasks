@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Primary;
 @Configuration
 public class CourseRecommenderConfig {
 
-    @Bean
-    @Primary
-    @Qualifier("cheapestCourseRecommender")
-    public CheapestCourseRecommender cheapestCourseRecommender() {
-        return new CheapestCourseRecommender();
-    }
+//    @Bean
+//    @Primary
+//    @Qualifier("cheapestCourseRecommender")
+//    public CheapestCourseRecommender cheapestCourseRecommender() {
+//        return new CheapestCourseRecommender();
+//    }
 
     @Bean
     @Qualifier("highRatedCourseRecommender")
