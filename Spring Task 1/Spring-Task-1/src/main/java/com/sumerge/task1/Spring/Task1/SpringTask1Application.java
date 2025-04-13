@@ -1,11 +1,16 @@
 package com.sumerge.task1.Spring.Task1;
 
-import com.sumerge.task1.Spring.Task1.Impl.HighRatedCourseRecommender;
+import com.sumerge.task1.Spring.Task1.Service.CourseService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
+@ComponentScan(basePackages = {
+		"com.sumerge.task1.Spring.Task1",
+		"com.sumerge.task2.Spring.Task2",
+})
 public class SpringTask1Application {
 
 	public static void main(String[] args) {

@@ -1,6 +1,6 @@
-package com.sumerge.task1.Spring.Task1.Interface;
+package com.sumerge.common.Interface;
 
-import com.sumerge.task1.Spring.Task1.Model.Course;
+import com.sumerge.common.Model.Course;
 
 import java.util.List;
 

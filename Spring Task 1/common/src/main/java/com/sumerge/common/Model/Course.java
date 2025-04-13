@@ -1,4 +1,4 @@
-package com.sumerge.task1.Spring.Task1.Model;
+package com.sumerge.common.Model;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

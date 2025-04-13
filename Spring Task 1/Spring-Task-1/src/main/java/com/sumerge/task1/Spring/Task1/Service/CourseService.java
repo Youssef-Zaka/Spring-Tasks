@@ -1,7 +1,8 @@
-package com.sumerge.task1.Spring.Task1;
+package com.sumerge.task1.Spring.Task1.Service;
 
-import com.sumerge.task1.Spring.Task1.Interface.CourseRecommender;
-import com.sumerge.task1.Spring.Task1.Model.Course;
+
+import com.sumerge.common.Interface.CourseRecommender;
+import com.sumerge.common.Model.Course;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +17,7 @@ public class CourseService {
     }
 
 
-    List<Course> getRecommendedCourses(){
+    public List<Course> getRecommendedCourses(){
         return courseRecommender.recommendCourses();
     }
 }
