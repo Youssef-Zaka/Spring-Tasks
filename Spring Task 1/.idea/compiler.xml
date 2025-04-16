@@ -9,16 +9,17 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Spring-Task-1" />
       </profile>
-      <profile name="Annotation profile for jdbc" enabled="true">
+      <profile name="Annotation profile for SpringPractice" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="false">
           <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
         </processorPath>
+        <module name="jdbc" />
         <module name="common" />
         <module name="Spring-Task-2" />
-        <module name="jdbc" />
+        <module name="SpringPractice" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -30,6 +31,7 @@
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
       <module name="Spring-Task-1" options="-parameters" />
       <module name="Spring-Task-2" options="-parameters" />
+      <module name="SpringPractice" options="-parameters" />
       <module name="common" options="-parameters" />
       <module name="jdbc" options="-parameters" />
     </option>
