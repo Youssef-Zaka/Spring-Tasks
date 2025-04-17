@@ -41,4 +41,20 @@ public class AssessmentService {
     public void deleteAssessment(Long id) {
         assessmentRepository.deleteById(id);
     }
+
+    public AssessmentDto updateAssessment(Long id, AssessmentDto dto) {
+        Assessment assessment = assessmentRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Assessment not found"));
+        assessment.setContent(dto.getContent());
+        Course course = courseRepository.findById(dto.getCourseId())
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        assessment.setCourse(course);
+        return assessmentMapper.toDto(assessmentRepository.save(assessment));
+    }
+
+    public AssessmentDto getAssessmentById(Long id) {
+        return assessmentRepository.findById(id)
+                .map(assessmentMapper::toDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Assessment not found"));
+    }
 }

@@ -42,4 +42,20 @@ public class RatingService {
     public void deleteRating(Long id) {
         ratingRepository.deleteById(id);
     }
+
+    public RatingDto updateRating(Long id, RatingDto dto) {
+        Rating rating = ratingRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Rating not found"));
+        rating.setNumber(dto.getNumber());
+        Course course = courseRepository.findById(dto.getCourseId())
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        rating.setCourse(course);
+        return ratingMapper.toDto(ratingRepository.save(rating));
+    }
+    
+    public RatingDto getRatingById(Long id) {
+        return ratingRepository.findById(id)
+                .map(ratingMapper::toDto)
+                .orElseThrow(() -> new ResourceNotFoundException("Rating not found"));
+    }
 }

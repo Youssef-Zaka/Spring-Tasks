@@ -8,6 +8,8 @@ import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Mappers.CourseMapper;
 import com.sumerge.SpringPractice.Repository.AuthorRepository;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,10 +35,9 @@ public class CourseService {
         return courseMapper.toDto(courseRepository.save(course));
     }
 
-    public List<CourseDto> getAllCourses() {
-        return courseRepository.findAll().stream()
-                .map(courseMapper::toDto)
-                .collect(Collectors.toList());
+    public Page<CourseDto> getAllCourses(Pageable pageable) {
+        return courseRepository.findAll(pageable)
+                .map(courseMapper::toDto);
     }
 
     public CourseDto getCourseById(Long id) {
@@ -47,5 +48,17 @@ public class CourseService {
 
     public void deleteCourse(Long id) {
         courseRepository.deleteById(id);
+    }
+
+    public CourseDto updateCourse(Long id, CourseDto dto) {
+        Course course = courseRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Course not found"));
+        course.setName(dto.getName());
+        course.setDescription(dto.getDescription());
+        course.setCredit(dto.getCredit());
+        Author author = authorRepository.findById(dto.getAuthorId())
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
+        course.setAuthor(author);
+        return courseMapper.toDto(courseRepository.save(course));
     }
 }

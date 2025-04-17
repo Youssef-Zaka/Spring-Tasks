@@ -40,4 +40,19 @@ public class AuthorService {
     public void deleteAuthor(Long id) {
         authorRepository.deleteById(id);
     }
+
+    public AuthorDto updateAuthor(Long id, AuthorDto dto) {
+        Author author = authorRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
+        author.setName(dto.getName());
+        author.setEmail(dto.getEmail());
+        author.setBirthdate(dto.getBirthdate());
+        return authorMapper.toDto(authorRepository.save(author));
+    }
+
+    public AuthorDto getAuthorByEmail(String email) {
+        Author author  = authorRepository.findByEmail(email)
+                .orElseThrow(() -> new ResourceNotFoundException("Author not found"));
+        return authorMapper.toDto(author);
+    }
 }
