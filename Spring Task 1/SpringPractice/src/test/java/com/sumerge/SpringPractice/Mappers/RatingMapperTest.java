@@ -40,4 +40,50 @@ public class RatingMapperTest {
         assertNotNull(rating.getCourse(), "Rating.course should not be null");
         assertEquals(10L, rating.getCourse().getId(), "The course.id should be mapped from courseId");
     }
+
+    @Test
+    public void testToDto_NullRating() {
+        // Test mapping when the input Rating is null
+        RatingDto dto = mapper.toDto(null);
+        assertNull(dto);
+    }
+
+    @Test
+    public void testToDto_NullCourseInRating() {
+        // Test mapping when the Rating has a null Course
+        Rating rating = new Rating();
+        rating.setCourse(null);
+        rating.setId(1L);
+        rating.setNumber(5);
+
+        RatingDto dto = mapper.toDto(rating);
+        assertNotNull(dto);
+        assertNull(dto.getCourseId());
+        assertEquals(1L, dto.getId());
+        assertEquals(5, dto.getNumber());
+    }
+
+    @Test
+    public void testToEntity_NullDto() {
+        // Test mapping when the input RatingDto is null
+        Rating rating = mapper.toEntity(null);
+        assertNull(rating);
+    }
+
+    @Test
+    public void testToEntity_NullCourseIdInDto() {
+        // Test mapping when the RatingDto has a null courseId
+        RatingDto dto = new RatingDto();
+        dto.setCourseId(null);
+        dto.setId(2L);
+        dto.setNumber(4);
+
+        Rating rating = mapper.toEntity(dto);
+        assertNotNull(rating);
+        assertNotNull(rating.getCourse());
+        assertNull(rating.getCourse().getId());
+        assertEquals(2L, rating.getId());
+        assertEquals(4, rating.getNumber());
+    }
+
 }

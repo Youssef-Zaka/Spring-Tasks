@@ -39,4 +39,41 @@ public class AssessmentMapperTest {
         assertNotNull(assessment.getCourse());
         assertEquals(2L, assessment.getCourse().getId());
     }
+
+    @Test
+    public void testToDto_NullAssessment() {
+        // Test mapping when the input Assessment is null
+        AssessmentDto dto = mapper.toDto(null);
+        assertNull(dto);
+    }
+
+    @Test
+    public void testToDto_NullCourseInAssessment() {
+        // Test mapping when the Assessment has a null Course
+        Assessment assessment = new Assessment();
+        assessment.setCourse(null);
+
+        AssessmentDto dto = mapper.toDto(assessment);
+        assertNotNull(dto);
+        assertNull(dto.getCourseId());
+    }
+
+    @Test
+    public void testToEntity_NullDto() {
+        // Test mapping when the input AssessmentDto is null
+        Assessment assessment = mapper.toEntity(null);
+        assertNull(assessment);
+    }
+
+    @Test
+    public void testToEntity_NullCourseIdInDto() {
+        // Test mapping when the AssessmentDto has a null courseId
+        AssessmentDto dto = new AssessmentDto();
+        dto.setCourseId(null);
+
+        Assessment assessment = mapper.toEntity(dto);
+        assertNotNull(assessment);
+        assertNotNull(assessment.getCourse());
+        assertNull(assessment.getCourse().getId());
+    }
 }

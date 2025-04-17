@@ -15,7 +15,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/courses")
@@ -35,7 +34,7 @@ public class CourseController {
         return ResponseEntity.ok(courseService.getAllCourses(pageable));
     }
 
-    private Sort.Order[] parseSort(String[] sort) {
+    Sort.Order[] parseSort(String[] sort) {
         return Arrays.stream(sort)
                 .map(s -> {
                     String[] parts = s.split(",");

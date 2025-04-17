@@ -9,12 +9,28 @@
         <outputRelativeToContentRoot value="true" />
         <module name="Spring-Tasks" />
       </profile>
+      <profile name="Annotation profile for SpringPractice" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.36/lombok-1.18.36.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct-processor/1.6.1/mapstruct-processor-1.6.1.jar" />
+          <entry name="$MAVEN_REPOSITORY$/org/mapstruct/mapstruct/1.6.1/mapstruct-1.6.1.jar" />
+        </processorPath>
+        <module name="SpringPractice" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="17" />
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Spring-Task-1" options="-parameters" />
+      <module name="Spring-Task-2" options="-parameters" />
       <module name="Spring-Tasks" options="-parameters" />
+      <module name="SpringPractice" options="-parameters" />
+      <module name="common" options="-parameters" />
+      <module name="jdbc" options="-parameters" />
     </option>
   </component>
 </project>

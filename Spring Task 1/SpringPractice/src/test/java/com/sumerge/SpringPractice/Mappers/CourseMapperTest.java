@@ -46,4 +46,60 @@ public class CourseMapperTest {
         assertNotNull(course.getAuthor(), "Author should not be null");
         assertEquals(dto.getAuthorId(), course.getAuthor().getId(), "The Author's id should match the authorId");
     }
+
+    @Test
+    public void testToDto_NullCourse() {
+        // Test mapping when the input Course is null
+        CourseDto dto = mapper.toDto(null);
+        assertNull(dto);
+    }
+
+    @Test
+    public void testToDto_NullAuthorInCourse() {
+        // Test mapping when the Course has a null Author
+        Course course = Course.builder()
+                .id(1L)
+                .name("Sample Course")
+                .credit(3)
+                .description("Sample Description")
+                .author(null)
+                .build();
+
+        CourseDto dto = mapper.toDto(course);
+        assertNotNull(dto);
+        assertNull(dto.getAuthorId());
+        assertEquals(1L, dto.getId());
+        assertEquals("Sample Course", dto.getName());
+        assertEquals(3, dto.getCredit());
+        assertEquals("Sample Description", dto.getDescription());
+    }
+
+    @Test
+    public void testToEntity_NullDto() {
+        // Test mapping when the input CourseDto is null
+        Course course = mapper.toEntity(null);
+        assertNull(course);
+    }
+
+    @Test
+    public void testToEntity_NullAuthorIdInDto() {
+        // Test mapping when the CourseDto has a null authorId
+        CourseDto dto = CourseDto.builder()
+                .id(1L)
+                .name("Sample Course")
+                .credit(3)
+                .description("Sample Description")
+                .authorId(null)
+                .build();
+
+        Course course = mapper.toEntity(dto);
+        assertNotNull(course);
+        assertNotNull(course.getAuthor());
+        assertNull(course.getAuthor().getId());
+        assertEquals(1L, course.getId());
+        assertEquals("Sample Course", course.getName());
+        assertEquals(3, course.getCredit());
+        assertEquals("Sample Description", course.getDescription());
+    }
+
 }

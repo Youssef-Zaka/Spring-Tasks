@@ -1,21 +1,19 @@
 package com.sumerge.SpringPractice.Mappers;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
 import com.sumerge.SpringPractice.Entity.Author;
 import com.sumerge.SpringPractice.Model.AuthorDto;
 import org.junit.jupiter.api.Test;
+import org.mapstruct.factory.Mappers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
-
-@SpringBootTest
 public class AuthorMapperTest {
 
     @Autowired
-    private AuthorMapper authorMapper;
+    private final AuthorMapper authorMapper = Mappers.getMapper(AuthorMapper.class);
 
     @Test
     public void testToDto() {
@@ -47,5 +45,20 @@ public class AuthorMapperTest {
         assertNotNull(author);
         assertEquals(dto.getId(), author.getId());
         assertEquals(dto.getName(), author.getName());
+    }
+
+    @Test
+    public void testToDto_NullAuthor() {
+        // Test mapping when the input Author is null
+        AuthorDto dto = authorMapper.toDto(null);
+        assertNull(dto);
+    }
+
+
+    @Test
+    public void testToEntity_NullAuthorDto() {
+        // Test mapping when the input AuthorDto is null
+        Author author = authorMapper.toEntity(null);
+        assertNull(author);
     }
 }
