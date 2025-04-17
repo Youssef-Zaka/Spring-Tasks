@@ -4,17 +4,18 @@ import com.sumerge.SpringPractice.Entity.Assessment;
 import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Model.AssessmentDto;
 import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.*;
 import org.mapstruct.factory.Mappers;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
-public class AssessmentMapperTest {
+
+ class AssessmentMapperTest {
 
     private final AssessmentMapper mapper = Mappers.getMapper(AssessmentMapper.class);
 
     @Test
-    public void testToDto() {
+     void testToDto() {
         // Create an Assessment instance with a nested Course having an id.
         Assessment assessment = new Assessment();
         Course course = new Course();
@@ -28,7 +29,7 @@ public class AssessmentMapperTest {
     }
 
     @Test
-    public void testToEntity() {
+     void testToEntity() {
         // Create an AssessmentDto instance with a courseId.
         AssessmentDto dto = new AssessmentDto();
         dto.setCourseId(2L);
@@ -41,14 +42,14 @@ public class AssessmentMapperTest {
     }
 
     @Test
-    public void testToDto_NullAssessment() {
+     void testToDto_NullAssessment() {
         // Test mapping when the input Assessment is null
         AssessmentDto dto = mapper.toDto(null);
         assertNull(dto);
     }
 
     @Test
-    public void testToDto_NullCourseInAssessment() {
+     void testToDto_NullCourseInAssessment() {
         // Test mapping when the Assessment has a null Course
         Assessment assessment = new Assessment();
         assessment.setCourse(null);
@@ -59,14 +60,14 @@ public class AssessmentMapperTest {
     }
 
     @Test
-    public void testToEntity_NullDto() {
+     void testToEntity_NullDto() {
         // Test mapping when the input AssessmentDto is null
         Assessment assessment = mapper.toEntity(null);
         assertNull(assessment);
     }
 
     @Test
-    public void testToEntity_NullCourseIdInDto() {
+     void testToEntity_NullCourseIdInDto() {
         // Test mapping when the AssessmentDto has a null courseId
         AssessmentDto dto = new AssessmentDto();
         dto.setCourseId(null);

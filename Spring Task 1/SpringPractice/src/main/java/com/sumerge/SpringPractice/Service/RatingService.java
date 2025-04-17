@@ -1,11 +1,11 @@
 package com.sumerge.SpringPractice.Service;
 
 
-import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
-import com.sumerge.SpringPractice.Model.RatingDto;
 import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Entity.Rating;
+import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
 import com.sumerge.SpringPractice.Mappers.RatingMapper;
+import com.sumerge.SpringPractice.Model.RatingDto;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import com.sumerge.SpringPractice.Repository.RatingRepository;
 import org.springframework.stereotype.Service;
@@ -36,7 +36,7 @@ public class RatingService {
     public List<RatingDto> getAllRatings() {
         return ratingRepository.findAll().stream()
                 .map(ratingMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void deleteRating(Long id) {

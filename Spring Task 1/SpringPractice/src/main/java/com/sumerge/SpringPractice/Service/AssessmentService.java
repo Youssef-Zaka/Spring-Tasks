@@ -1,10 +1,10 @@
 package com.sumerge.SpringPractice.Service;
 
-import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
-import com.sumerge.SpringPractice.Model.AssessmentDto;
 import com.sumerge.SpringPractice.Entity.Assessment;
 import com.sumerge.SpringPractice.Entity.Course;
+import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
 import com.sumerge.SpringPractice.Mappers.AssessmentMapper;
+import com.sumerge.SpringPractice.Model.AssessmentDto;
 import com.sumerge.SpringPractice.Repository.AssessmentRepository;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import org.springframework.stereotype.Service;
@@ -35,7 +35,7 @@ public class AssessmentService {
     public List<AssessmentDto> getAllAssessments() {
         return assessmentRepository.findAll().stream()
                 .map(assessmentMapper::toDto)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     public void deleteAssessment(Long id) {

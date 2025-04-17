@@ -3,7 +3,8 @@ package com.sumerge.SpringPractice.Mappers;
 
 import com.sumerge.SpringPractice.Entity.Assessment;
 import com.sumerge.SpringPractice.Model.AssessmentDto;
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface AssessmentMapper {

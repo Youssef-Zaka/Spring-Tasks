@@ -1,10 +1,12 @@
 package com.sumerge.SpringPractice.Config;
+
 import io.swagger.v3.oas.models.Components;
 import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.Paths;
 import io.swagger.v3.oas.models.parameters.HeaderParameter;
 import org.junit.jupiter.api.Test;
 import org.springdoc.core.customizers.OpenApiCustomizer;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 

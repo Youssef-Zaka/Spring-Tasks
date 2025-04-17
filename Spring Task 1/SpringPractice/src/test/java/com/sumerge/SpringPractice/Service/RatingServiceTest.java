@@ -3,21 +3,22 @@ package com.sumerge.SpringPractice.Service;
 import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Entity.Rating;
 import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
-import com.sumerge.SpringPractice.Model.RatingDto;
 import com.sumerge.SpringPractice.Mappers.RatingMapper;
+import com.sumerge.SpringPractice.Model.RatingDto;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import com.sumerge.SpringPractice.Repository.RatingRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
+
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Optional;
 import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -26,7 +27,7 @@ import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
-public class RatingServiceTest {
+ class RatingServiceTest {
 
     @Mock
     private RatingRepository ratingRepository;
@@ -45,7 +46,7 @@ public class RatingServiceTest {
     private Course course;
 
     @BeforeEach
-    public void setup() {
+     void setup() {
         ratingDto = new RatingDto();
         ratingDto.setCourseId(1L);
         ratingDto.setNumber(5);
@@ -58,7 +59,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testCreateRating_Success() {
+     void testCreateRating_Success() {
         // Arrange
         when(ratingMapper.toEntity(ratingDto)).thenReturn(rating);
         when(courseRepository.findById(1L)).thenReturn(Optional.of(course));
@@ -76,7 +77,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testCreateRating_CourseNotFound() {
+     void testCreateRating_CourseNotFound() {
         // Arrange
         when(ratingMapper.toEntity(ratingDto)).thenReturn(rating);
         when(courseRepository.findById(1L)).thenReturn(Optional.empty());
@@ -88,7 +89,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testGetAllRatings_EmptyList() {
+     void testGetAllRatings_EmptyList() {
         // Arrange
         when(ratingRepository.findAll()).thenReturn(Collections.emptyList());
 
@@ -100,7 +101,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testGetAllRatings_NonEmptyList() {
+     void testGetAllRatings_NonEmptyList() {
         // Arrange
         Rating anotherRating = new Rating();
         RatingDto anotherRatingDto = new RatingDto();
@@ -116,7 +117,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testDeleteRating() {
+     void testDeleteRating() {
         // Act
         ratingService.deleteRating(1L);
 
@@ -125,7 +126,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testUpdateRating_Success() {
+     void testUpdateRating_Success() {
         // Arrange
         ratingDto.setNumber(10);
         Rating existingRating = new Rating();
@@ -147,7 +148,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testUpdateRating_RatingNotFound() {
+     void testUpdateRating_RatingNotFound() {
         // Arrange
         when(ratingRepository.findById(1L)).thenReturn(Optional.empty());
 
@@ -158,7 +159,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testUpdateRating_CourseNotFound() {
+     void testUpdateRating_CourseNotFound() {
         // Arrange
         Rating existingRating = new Rating();
         existingRating.setNumber(5);
@@ -172,7 +173,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testGetRatingById_Success() {
+     void testGetRatingById_Success() {
         // Arrange
         when(ratingRepository.findById(1L)).thenReturn(Optional.of(rating));
         when(ratingMapper.toDto(rating)).thenReturn(ratingDto);
@@ -186,7 +187,7 @@ public class RatingServiceTest {
     }
 
     @Test
-    public void testGetRatingById_NotFound() {
+     void testGetRatingById_NotFound() {
         // Arrange
         when(ratingRepository.findById(1L)).thenReturn(Optional.empty());
 

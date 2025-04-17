@@ -5,18 +5,19 @@ import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Model.CourseDto;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
 
 
-public class CourseMapperTest {
+ class CourseMapperTest {
 
     // Use Mapstruct's factory to get an instance of the mapper.
     private final CourseMapper mapper = Mappers.getMapper(CourseMapper.class);
 
     @Test
-    public void testToDtoMapping() {
+     void testToDtoMapping() {
         // Arrange: create a dummy Course with an Author having an id.
         Author author = new Author();
         author.setId(100L);
@@ -33,7 +34,7 @@ public class CourseMapperTest {
     }
 
     @Test
-    public void testToEntityMapping() {
+     void testToEntityMapping() {
         // Arrange: create a CourseDto with an authorId.
         CourseDto dto = new CourseDto();
         dto.setAuthorId(200L);
@@ -48,14 +49,14 @@ public class CourseMapperTest {
     }
 
     @Test
-    public void testToDto_NullCourse() {
+     void testToDto_NullCourse() {
         // Test mapping when the input Course is null
         CourseDto dto = mapper.toDto(null);
         assertNull(dto);
     }
 
     @Test
-    public void testToDto_NullAuthorInCourse() {
+     void testToDto_NullAuthorInCourse() {
         // Test mapping when the Course has a null Author
         Course course = Course.builder()
                 .id(1L)
@@ -75,14 +76,14 @@ public class CourseMapperTest {
     }
 
     @Test
-    public void testToEntity_NullDto() {
+     void testToEntity_NullDto() {
         // Test mapping when the input CourseDto is null
         Course course = mapper.toEntity(null);
         assertNull(course);
     }
 
     @Test
-    public void testToEntity_NullAuthorIdInDto() {
+     void testToEntity_NullAuthorIdInDto() {
         // Test mapping when the CourseDto has a null authorId
         CourseDto dto = CourseDto.builder()
                 .id(1L)

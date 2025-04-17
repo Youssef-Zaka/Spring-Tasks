@@ -5,19 +5,20 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+
 import java.util.Optional;
 
 
 
 
 @DataJpaTest
-public class RatingRepositoryTest {
+ class RatingRepositoryTest {
 
     @Autowired
     private RatingRepository ratingRepository;
 
     @Test
-    public void testSaveAndFindRating() {
+     void testSaveAndFindRating() {
         Rating rating = new Rating();
         
         rating = ratingRepository.save(rating);
@@ -29,7 +30,7 @@ public class RatingRepositoryTest {
     }
 
     @Test
-    public void testDeleteRating() {
+     void testDeleteRating() {
         Rating rating = new Rating();
         
         rating = ratingRepository.save(rating);
