@@ -1,5 +1,4 @@
 package com.sumerge.SpringPractice.Config;
-
 import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
 import com.sumerge.SpringPractice.Model.ErrorResponseDto;
 import jakarta.servlet.http.HttpServletRequest;
@@ -8,7 +7,6 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 

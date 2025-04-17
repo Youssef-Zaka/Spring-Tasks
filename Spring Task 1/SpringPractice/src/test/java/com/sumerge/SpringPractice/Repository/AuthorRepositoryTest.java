@@ -7,19 +7,18 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDate;
 import java.util.Optional;
-
 import static org.assertj.core.api.Assertions.assertThat;
 
 
 
 @DataJpaTest
- class AuthorRepositoryTest {
+public class AuthorRepositoryTest {
 
     @Autowired
     private AuthorRepository authorRepository;
 
     @Test
-     void testFindByEmail_ReturnsAuthor() {
+    public void testFindByEmail_ReturnsAuthor() {
         // Given: Create and save an Author instance
         Author author = new Author();
         author.setName("Jane Doe");
@@ -39,7 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
     }
 
     @Test
-     void testFindByEmail_ReturnsEmpty() {
+    public void testFindByEmail_ReturnsEmpty() {
         // When: Searching for an email that does not exist in the repository
         Optional<Author> foundAuthor = authorRepository.findByEmail("nonexistent@example.com");
 

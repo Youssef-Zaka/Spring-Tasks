@@ -5,19 +5,18 @@ import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Model.CourseDto;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
 
 
- class CourseMapperTest {
+public class CourseMapperTest {
 
     // Use Mapstruct's factory to get an instance of the mapper.
     private final CourseMapper mapper = Mappers.getMapper(CourseMapper.class);
 
     @Test
-     void testToDtoMapping() {
+    public void testToDtoMapping() {
         // Arrange: create a dummy Course with an Author having an id.
         Author author = new Author();
         author.setId(100L);
@@ -34,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToEntityMapping() {
+    public void testToEntityMapping() {
         // Arrange: create a CourseDto with an authorId.
         CourseDto dto = new CourseDto();
         dto.setAuthorId(200L);
@@ -49,14 +48,14 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToDto_NullCourse() {
+    public void testToDto_NullCourse() {
         // Test mapping when the input Course is null
         CourseDto dto = mapper.toDto(null);
         assertNull(dto);
     }
 
     @Test
-     void testToDto_NullAuthorInCourse() {
+    public void testToDto_NullAuthorInCourse() {
         // Test mapping when the Course has a null Author
         Course course = Course.builder()
                 .id(1L)
@@ -76,14 +75,14 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToEntity_NullDto() {
+    public void testToEntity_NullDto() {
         // Test mapping when the input CourseDto is null
         Course course = mapper.toEntity(null);
         assertNull(course);
     }
 
     @Test
-     void testToEntity_NullAuthorIdInDto() {
+    public void testToEntity_NullAuthorIdInDto() {
         // Test mapping when the CourseDto has a null authorId
         CourseDto dto = CourseDto.builder()
                 .id(1L)

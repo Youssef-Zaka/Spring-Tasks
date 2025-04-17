@@ -1,5 +1,4 @@
 package com.sumerge.SpringPractice.Controller;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sumerge.SpringPractice.Model.CourseDto;
 import com.sumerge.SpringPractice.Service.CourseService;
@@ -16,15 +15,14 @@ import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
 import java.util.Arrays;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 
 
@@ -141,7 +139,7 @@ class CourseControllerTest {
         verify(courseService, times(1)).deleteCourse(1L);
     }
     @Test
-    void testParseSortSingleFieldAscending() {
+    void testParseSortSingleFieldAscending() throws Exception {
         String[] sort = {"name,asc"};
         Sort.Order[] orders = courseController.parseSort(sort);
 
@@ -151,7 +149,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void testParseSortSingleFieldDescending() {
+    void testParseSortSingleFieldDescending() throws Exception {
         String[] sort = {"credit,desc"};
         Sort.Order[] orders = courseController.parseSort(sort);
 
@@ -161,7 +159,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void testParseSortMultipleFields() {
+    void testParseSortMultipleFields() throws Exception {
         String[] sort = {"name,asc", "credit,desc"};
         Sort.Order[] orders = courseController.parseSort(sort);
 
@@ -173,7 +171,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void testParseSortDefaultDirection() {
+    void testParseSortDefaultDirection() throws Exception {
         String[] sort = {"name"};
         Sort.Order[] orders = courseController.parseSort(sort);
 
@@ -183,7 +181,7 @@ class CourseControllerTest {
     }
 
     @Test
-    void testParseSortInvalidDirection() {
+    void testParseSortInvalidDirection() throws Exception {
         String[] sort = {"name,invalid"};
         Exception exception = assertThrows(IllegalArgumentException.class, () -> courseController.parseSort(sort));
         assertEquals("Invalid value 'invalid' for orders given; Has to be either 'desc' or 'asc' (case insensitive)", exception.getMessage());

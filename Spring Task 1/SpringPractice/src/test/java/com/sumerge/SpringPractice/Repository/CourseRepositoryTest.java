@@ -4,9 +4,7 @@ import com.sumerge.SpringPractice.Entity.Course;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -14,13 +12,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @DataJpaTest
- class CourseRepositoryTest {
+public class CourseRepositoryTest {
 
     @Autowired
     private CourseRepository courseRepository;
 
     @Test
-     void testSaveCourse() {
+    public void testSaveCourse() {
         Course course = new Course();
         
         course = courseRepository.save(course);
@@ -28,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testFindCourseById() {
+    public void testFindCourseById() {
         Course course = new Course();
 
         // Save course
@@ -41,7 +39,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testDeleteCourse() {
+    public void testDeleteCourse() {
         Course course = new Course();
 
         // Save and then delete the course

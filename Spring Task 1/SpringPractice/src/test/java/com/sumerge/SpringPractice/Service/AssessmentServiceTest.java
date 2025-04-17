@@ -3,31 +3,29 @@ package com.sumerge.SpringPractice.Service;
 import com.sumerge.SpringPractice.Entity.Assessment;
 import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
-import com.sumerge.SpringPractice.Mappers.AssessmentMapper;
 import com.sumerge.SpringPractice.Model.AssessmentDto;
+import com.sumerge.SpringPractice.Mappers.AssessmentMapper;
 import com.sumerge.SpringPractice.Repository.AssessmentRepository;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentCaptor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-
 import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 
 
 
 @ExtendWith(MockitoExtension.class)
- class AssessmentServiceTest {
+public class AssessmentServiceTest {
 
     @Mock
     private AssessmentRepository assessmentRepository;
@@ -44,7 +42,7 @@ import static org.mockito.Mockito.when;
     private Course course;
 
     @BeforeEach
-     void setUp() {
+    public void setUp() {
         assessmentDto = new AssessmentDto();
         assessmentDto.setCourseId(1L);
         assessmentDto.setContent("Test Content");
@@ -57,7 +55,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testCreateAssessment_Success() {
+    public void testCreateAssessment_Success() {
         when(assessmentMapper.toEntity(assessmentDto)).thenReturn(assessment);
         when(courseRepository.findById(assessmentDto.getCourseId())).thenReturn(Optional.of(course));
         when(assessmentRepository.save(assessment)).thenReturn(assessment);
@@ -76,7 +74,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testCreateAssessment_CourseNotFound() {
+    public void testCreateAssessment_CourseNotFound() {
         when(assessmentMapper.toEntity(assessmentDto)).thenReturn(assessment);
         when(courseRepository.findById(assessmentDto.getCourseId())).thenReturn(Optional.empty());
 
@@ -87,7 +85,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testGetAllAssessments() {
+    public void testGetAllAssessments() {
         Assessment assessment2 = new Assessment();
         AssessmentDto dto2 = new AssessmentDto();
 
@@ -101,14 +99,14 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testDeleteAssessment() {
+    public void testDeleteAssessment() {
         Long id = 100L;
         assessmentService.deleteAssessment(id);
         verify(assessmentRepository).deleteById(id);
     }
 
     @Test
-     void testUpdateAssessment_Success() {
+    public void testUpdateAssessment_Success() {
         AssessmentDto updatedDto = new AssessmentDto();
         updatedDto.setCourseId(1L);
         updatedDto.setContent("Updated Content");
@@ -131,7 +129,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testUpdateAssessment_AssessmentNotFound() {
+    public void testUpdateAssessment_AssessmentNotFound() {
         Long notFoundId = 999L;
         when(assessmentRepository.findById(notFoundId)).thenReturn(Optional.empty());
 
@@ -142,7 +140,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testGetAssessmentById_Success() {
+    public void testGetAssessmentById_Success() {
         when(assessmentRepository.findById(assessment.getId())).thenReturn(Optional.of(assessment));
         when(assessmentMapper.toDto(assessment)).thenReturn(assessmentDto);
 
@@ -153,7 +151,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testGetAssessmentById_NotFound() {
+    public void testGetAssessmentById_NotFound() {
         Long notFoundId = 999L;
         when(assessmentRepository.findById(notFoundId)).thenReturn(Optional.empty());
 
@@ -163,7 +161,7 @@ import static org.mockito.Mockito.when;
     }
 
     @Test
-     void testUpdateAssessment_CourseNotFound() {
+    public void testUpdateAssessment_CourseNotFound() {
         AssessmentDto updatedDto = new AssessmentDto();
         updatedDto.setCourseId(1L);
         updatedDto.setContent("Updated Content");
@@ -171,9 +169,8 @@ import static org.mockito.Mockito.when;
         when(assessmentRepository.findById(assessment.getId())).thenReturn(Optional.of(assessment));
         when(courseRepository.findById(updatedDto.getCourseId())).thenReturn(Optional.empty());
 
-       Exception exception = assertThrows(ResourceNotFoundException.class, () -> {
-          assessmentService.updateAssessment(assessment.getId(), updatedDto);
-       });
+        Exception exception = assertThrows(ResourceNotFoundException.class, () ->
+                assessmentService.updateAssessment(assessment.getId(), updatedDto));
 
         assertEquals("Course not found", exception.getMessage());
     }

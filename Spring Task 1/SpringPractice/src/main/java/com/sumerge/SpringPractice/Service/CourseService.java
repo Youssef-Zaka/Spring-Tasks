@@ -1,16 +1,19 @@
 package com.sumerge.SpringPractice.Service;
 
 
+import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
+import com.sumerge.SpringPractice.Model.CourseDto;
 import com.sumerge.SpringPractice.Entity.Author;
 import com.sumerge.SpringPractice.Entity.Course;
-import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
 import com.sumerge.SpringPractice.Mappers.CourseMapper;
-import com.sumerge.SpringPractice.Model.CourseDto;
 import com.sumerge.SpringPractice.Repository.AuthorRepository;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class CourseService {

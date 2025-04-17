@@ -3,8 +3,7 @@ package com.sumerge.SpringPractice.Mappers;
 
 import com.sumerge.SpringPractice.Entity.Rating;
 import com.sumerge.SpringPractice.Model.RatingDto;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+import org.mapstruct.*;
 
 @Mapper(componentModel = "spring")
 public interface RatingMapper {

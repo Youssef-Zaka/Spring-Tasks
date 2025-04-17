@@ -3,34 +3,31 @@ package com.sumerge.SpringPractice.Service;
 import com.sumerge.SpringPractice.Entity.Author;
 import com.sumerge.SpringPractice.Entity.Course;
 import com.sumerge.SpringPractice.Exception.ResourceNotFoundException;
-import com.sumerge.SpringPractice.Mappers.CourseMapper;
 import com.sumerge.SpringPractice.Model.CourseDto;
+import com.sumerge.SpringPractice.Mappers.CourseMapper;
 import com.sumerge.SpringPractice.Repository.AuthorRepository;
 import com.sumerge.SpringPractice.Repository.CourseRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
-
 import java.util.Collections;
 import java.util.Optional;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 
 
 
 
 @ExtendWith(MockitoExtension.class)
-class CourseServiceTest {
+public class CourseServiceTest {
 
     @Mock
     private CourseRepository courseRepository;
@@ -44,12 +41,12 @@ class CourseServiceTest {
     private CourseService courseService;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         courseService = new CourseService(courseRepository, authorRepository, courseMapper);
     }
 
     @Test
-    void testCreateCourse_success() {
+    public void testCreateCourse_success() {
         // Given
         CourseDto dto = new CourseDto();
         dto.setAuthorId(1L);
@@ -78,7 +75,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testCreateCourse_authorNotFound() {
+    public void testCreateCourse_authorNotFound() {
         // Given
         CourseDto dto = new CourseDto();
         dto.setAuthorId(1L);
@@ -94,7 +91,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testGetAllCourses() {
+    public void testGetAllCourses() {
         // Given
         Pageable pageable = Pageable.unpaged();
         Course course = new Course();
@@ -112,7 +109,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testGetCourseById_success() {
+    public void testGetCourseById_success() {
         // Given
         Long courseId = 1L;
         Course course = new Course();
@@ -131,7 +128,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testGetCourseById_notFound() {
+    public void testGetCourseById_notFound() {
         // Given
         Long courseId = 1L;
         when(courseRepository.findById(courseId)).thenReturn(Optional.empty());
@@ -143,7 +140,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testDeleteCourse() {
+    public void testDeleteCourse() {
         // Given
         Long courseId = 1L;
 
@@ -155,7 +152,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testUpdateCourse_success() {
+    public void testUpdateCourse_success() {
         // Given
         Long courseId = 1L;
         CourseDto dto = new CourseDto();
@@ -196,7 +193,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testUpdateCourse_courseNotFound() {
+    public void testUpdateCourse_courseNotFound() {
         // Given
         Long courseId = 1L;
         CourseDto dto = new CourseDto();
@@ -209,7 +206,7 @@ class CourseServiceTest {
     }
 
     @Test
-    void testUpdateCourse_authorNotFound() {
+    public void testUpdateCourse_authorNotFound() {
         // Given
         Long courseId = 1L;
         CourseDto dto = new CourseDto();

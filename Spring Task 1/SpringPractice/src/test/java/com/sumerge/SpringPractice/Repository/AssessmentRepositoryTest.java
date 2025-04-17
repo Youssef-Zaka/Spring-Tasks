@@ -4,7 +4,6 @@ import com.sumerge.SpringPractice.Entity.Assessment;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -12,13 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 @DataJpaTest
- class AssessmentRepositoryTest {
+public class AssessmentRepositoryTest {
 
     @Autowired
     private AssessmentRepository repository;
 
     @Test
-     void testSaveAssessment() {
+    public void testSaveAssessment() {
         // Create a new Assessment instance.
         Assessment assessment = new Assessment();
 
@@ -29,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
     }
 
     @Test
-     void testFindAllAssessments() {
+    public void testFindAllAssessments() {
         // Save two new Assessments.
         Assessment assessment1 = new Assessment();
         Assessment assessment2 = new Assessment();

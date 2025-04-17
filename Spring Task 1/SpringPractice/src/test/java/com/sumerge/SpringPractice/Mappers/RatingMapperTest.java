@@ -5,18 +5,17 @@ import com.sumerge.SpringPractice.Entity.Rating;
 import com.sumerge.SpringPractice.Model.RatingDto;
 import org.junit.jupiter.api.Test;
 import org.mapstruct.factory.Mappers;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 
 
 
- class RatingMapperTest {
+public class RatingMapperTest {
 
     private final RatingMapper mapper = Mappers.getMapper(RatingMapper.class);
 
     @Test
-     void testToDto() {
+    public void testToDto() {
         // create a Rating entity with a Course having an id
         Rating rating = new Rating();
         Course course = new Course();
@@ -30,7 +29,7 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToEntity() {
+    public void testToEntity() {
         // create a RatingDto with a courseId
         RatingDto dto = new RatingDto();
         dto.setCourseId(10L);
@@ -43,14 +42,14 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToDto_NullRating() {
+    public void testToDto_NullRating() {
         // Test mapping when the input Rating is null
         RatingDto dto = mapper.toDto(null);
         assertNull(dto);
     }
 
     @Test
-     void testToDto_NullCourseInRating() {
+    public void testToDto_NullCourseInRating() {
         // Test mapping when the Rating has a null Course
         Rating rating = new Rating();
         rating.setCourse(null);
@@ -65,14 +64,14 @@ import static org.junit.jupiter.api.Assertions.*;
     }
 
     @Test
-     void testToEntity_NullDto() {
+    public void testToEntity_NullDto() {
         // Test mapping when the input RatingDto is null
         Rating rating = mapper.toEntity(null);
         assertNull(rating);
     }
 
     @Test
-     void testToEntity_NullCourseIdInDto() {
+    public void testToEntity_NullCourseIdInDto() {
         // Test mapping when the RatingDto has a null courseId
         RatingDto dto = new RatingDto();
         dto.setCourseId(null);
